@@ -45,17 +45,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == "坂井 優":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="牡蠣!!"))
-
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
-
-
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":
