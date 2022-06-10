@@ -57,20 +57,7 @@ def handle_message(event):
     elif event.message.text == "P":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="..."))
-        time.sleep(3)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="さては彩乃だな？"))
-        time.sleep(2)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="この機能彩乃にしか教えてないからな..."))
-        time.sleep(3)
-        line_bot_api.reply_message(
-            event.reply_token,
             TextSendMessage(text="いつもありがとう大好きだよ"))
-        
     else: 
         line_bot_api.reply_message(
             event.reply_token,
