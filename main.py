@@ -73,21 +73,8 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
-
-    elif event.message.text == "まさや":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="あお"))
-
-    elif event.message.text == "P":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="いつもありがとう大好きだよ"))
-
-    else: 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
+    else:
+        pass
 
 
 if __name__ == "__main__":
