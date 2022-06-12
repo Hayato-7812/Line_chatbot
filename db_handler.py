@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 from datetime import  datetime
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
 
 class dbvalue_base():
     #self.attr[0] must be primary key
@@ -47,11 +48,11 @@ def get_data(conn,cur):
 
 @dbopen('music.db')
 def get_items(conn,cur,tablename="urls"):  #as dict in list 
-    LOGGER.info("get db items")
+    print("get db items")
     cur.execute("select * from urls")
     result = []
     for row in cur:
-        LOGGER.info("row:{}".format(row))
+        print("row:{}".format(row))
         result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4]).to_dict())
     return result
 
@@ -70,5 +71,5 @@ if __name__ == "__main__":
             _comment = "nice!"
         )
     
-    print(get_items())
+    get_items()
     
