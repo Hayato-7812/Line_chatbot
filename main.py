@@ -1,6 +1,6 @@
 
 from flask import Flask, request, abort
-from db_handler import *
+# from db_handler import *
 
 from linebot import (
     LineBotApi, WebhookHandler
