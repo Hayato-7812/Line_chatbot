@@ -8,10 +8,15 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,TemplateSendMessage,CarouselTemplate,CarouselColumn,
+    PostbackEvent,
+    QuickReply, QuickReplyButton
+
 )
+from linebot.models.actions import PostbackAction
 import os
 import time
+import re
 
 app = Flask(__name__)
 
@@ -46,10 +51,23 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == "share":
+    if event.message.text == "Share songs with others！":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="input link"))
+    elif event.message.text == "What are other people's favorite songs?":
+        columns_list = []
+        columns_list.append(CarouselColumn(title="タイトルだよ", text="よろしくね", actions=[PostbackAction(label="詳細を表示", data=f"詳細表示"), PostbackAction(label="削除", data=f"削除")]))
+        columns_list.append(CarouselColumn(title="タイトルだよ", text="よろしくね", actions=[PostbackAction(label="詳細を表示", data=f"詳細表示"), PostbackAction(label="削除", data=f"削除")]))
+        carousel_template_message = TemplateSendMessage(
+                        alt_text='会話ログを表示しています',
+                        template=CarouselTemplate(columns=columns_list)
+            )
+        line_bot_api.reply_message(event.reply_token, messages=carousel_template_message)
+    elif event.message.text == " Visit the site!":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text))
     elif event.message.text == "まさや":
         line_bot_api.reply_message(
             event.reply_token,
