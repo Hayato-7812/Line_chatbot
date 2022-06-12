@@ -57,7 +57,7 @@ def handle_message(event):
             TextSendMessage(text="input link"))
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri=f"")]))
+        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri="https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#creating-a-rich-menu-using-the-messaging-api")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='会話ログを表示しています',
                         template=CarouselTemplate(columns=columns_list)
