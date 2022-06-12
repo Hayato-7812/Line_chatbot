@@ -13,7 +13,7 @@ from linebot.models import (
     QuickReply, QuickReplyButton
 
 )
-from linebot.models.actions import PostbackAction
+from linebot.models.actions import PostbackAction,URIAction
 import os
 import time
 import re
@@ -57,8 +57,7 @@ def handle_message(event):
             TextSendMessage(text="input link"))
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        columns_list.append(CarouselColumn(title="タイトルだよ", text="よろしくね", actions=[PostbackAction(label="詳細を表示", data=f"詳細表示"), PostbackAction(label="削除", data=f"削除")]))
-        columns_list.append(CarouselColumn(title="タイトルだよ", text="よろしくね", actions=[PostbackAction(label="詳細を表示", data=f"詳細表示"), PostbackAction(label="削除", data=f"削除")]))
+        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri=f"")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='会話ログを表示しています',
                         template=CarouselTemplate(columns=columns_list)
