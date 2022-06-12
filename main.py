@@ -57,10 +57,10 @@ def handle_message(event):
             TextSendMessage(text="input link"))
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri="https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#creating-a-rich-menu-using-the-messaging-api")]))
+        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri="https://www.youtube.com/watch?v=XaVPr6HVrbI")],thumbnail_image_url="https://www.youtube.com/watch?v=XaVPr6HVrbI"))
         carousel_template_message = TemplateSendMessage(
-                        alt_text='会話ログを表示しています',
-                        template=CarouselTemplate(columns=columns_list)
+                        alt_text='this is a music carousel',
+                        template=CarouselTemplate(columns=columns_list,)
             )
         line_bot_api.reply_message(event.reply_token, messages=carousel_template_message)
     elif event.message.text == " Visit the site!":
