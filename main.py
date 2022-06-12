@@ -1,5 +1,6 @@
 
 from flask import Flask, request, abort
+from db_handler import *
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -55,26 +56,32 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="input link"))
+
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        columns_list.append(CarouselColumn(title="Music", text="recomended by", actions=[URIAction(label="Listen it", uri="https://www.youtube.com/watch?v=XaVPr6HVrbI")],thumbnail_image_url="https://www.youtube.com/watch?v=XaVPr6HVrbI"))
+        for item in get_items():
+            columns_list.append(CarouselColumn(thumbnail_image_url=None,title="Music", text=f"recomended by {item.user}", actions=[URIAction(label="Listen it", uri=f"{item.url}")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='this is a music carousel',
                         template=CarouselTemplate(columns=columns_list,)
             )
         line_bot_api.reply_message(event.reply_token, messages=carousel_template_message)
+    
     elif event.message.text == " Visit the site!":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
+
     elif event.message.text == "まさや":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="あお"))
+
     elif event.message.text == "P":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="いつもありがとう大好きだよ"))
+
     else: 
         line_bot_api.reply_message(
             event.reply_token,
