@@ -80,19 +80,19 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
 
 
 
-if __name__ == "__main__":
-    obj= dbvalue_urls(
-            _id=3,
-            _date = dt.today()
-            _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
-            _rec_by = "testman",
-            _comment = "yeah!"
-        )
+# if __name__ == "__main__":
+    # obj= dbvalue_urls(
+    #         _id=3,
+    #         _date = dt.today(),
+    #         _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
+    #         _rec_by = "testman",
+    #         _comment = "yeah!"
+    #     )
     
     # add_item(obj)
     # print(get_next_id())
-    item = get_items()
-    print("Sedefr")
+    # item = get_items()
+    # print("Sedefr")
     
 
     # for item in get_items():
