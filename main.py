@@ -2,7 +2,7 @@ import time
 import re
 from flask import Flask, request, abort
 import os
-from db_handler import *
+# from db_handler import *
 
 from linebot import (
     LineBotApi, WebhookHandler
