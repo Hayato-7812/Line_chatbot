@@ -1,5 +1,3 @@
-import time
-import re
 from flask import Flask, request, abort
 import os
 from db_handler import *
@@ -17,8 +15,6 @@ from linebot.models import (
 
 )
 from linebot.models.actions import PostbackAction,URIAction
-
-
 app = Flask(__name__)
 
 #環境変数取得
@@ -59,14 +55,14 @@ def handle_message(event):
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        # for item in get_items():
-        #     columns_list.append(CarouselColumn(
-        #                         title=item["comment"], 
-        #                         text="recomended by {}".format(item["rec_by"]),
-        #                         actions=[URIAction(label="Listen it",
-        #                         uri=item["uri"])]
-        #                         )
-        #                     )
+        for item in get_items():
+            columns_list.append(CarouselColumn(
+                                title=item["comment"], 
+                                text="recomended by {}".format(item["rec_by"]),
+                                actions=[URIAction(label="Listen it",
+                                uri=item["uri"])]
+                                )
+                            )
         columns_list.append(CarouselColumn(title="nobodyknows+ - ココロオドル / THE FIRST TAKE", text=f"recomended by P", actions=[URIAction(label="Listen it", uri=f"https://www.youtube.com/watch?v=XaVPr6HVrbI")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='this is a music carousel',
