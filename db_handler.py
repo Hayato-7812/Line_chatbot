@@ -34,7 +34,13 @@ def dbopen():
     def recv_func(func):
         def wrapper(*args, **kwargs):
             # conn = sqlite3.connect("music.db")
-            cur = conn.cursor()
+            try:
+                cur = conn.cursor()
+            except Exception as e:
+                print (e)
+                print("retry connecting ...")
+                conn = psycopg2.connect(DATABASE_URL)
+                cur = conn.cursor()
             result = func(conn,cur,*args)
             conn.commit()
             cur.close()
@@ -92,7 +98,7 @@ if __name__ == "__main__":
     # add_item(obj)
     # print(get_next_id())
     item = get_items()
-    # print("Sedefr")
+    print(item)
     
 
     # for item in get_items():
