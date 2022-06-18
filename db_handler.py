@@ -1,8 +1,6 @@
 from operator import getitem
-import sqlite3
 import logging
-import pandas as pd
-from datetime import  datetime
+from datetime import datetime as dt 
 import psycopg2
 import os
 
@@ -23,13 +21,13 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1, _uri="", _rec_by="",_comment=""):
+    def __init__(self,_id=-1,_uri="", _rec_by="",_comment="",_date=dt.today()):
         self.id = _id
+        self.date = _date
         self.uri = _uri
         self.rec_by = _rec_by
-        # self.date = _date
         self.comment = _comment
-        self.attr= ["id", "uri","rec_by","comment"]
+        self.attr= ["id","date","uri","rec_by","comment"]
         self.table="A_MUSIC"
 
 def dbopen():
@@ -53,7 +51,7 @@ def add_item(conn,cur,obj:dbvalue_urls):
     # sql = 'INSERT INTO {} (ID,URI,REC_BY,COMMENT) VALUES(?,?,?,?)'.format(obj.table)
     # data = (obj.id, obj.uri,obj.rec_by,obj.comment)
     # cur.execute(sql, data)
-    cur.execute("INSERT INTO {} VALUES ({}, '{}', '{}','{}')".format(obj.table,obj.id,obj.uri,obj.rec_by,obj.comment))
+    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}'.'{}','{}')".format(obj.table,obj.date,obj.id,obj.uri,obj.rec_by,obj.comment))
 
 @dbopen()
 def get_data(conn,cur,tablename = "A_MUSIC"):
@@ -67,7 +65,7 @@ def get_items(conn,cur,tablename="A_MUSIC"):  #as dict in list
     result = []
     for row in cur:
         # print("row:{}".format(row))
-        result.append(dbvalue_urls(row[0],row[1],row[2],row[3]).to_dict())
+        result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4]).to_dict())
     return result
 
 @dbopen()
@@ -85,6 +83,7 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
 if __name__ == "__main__":
     obj= dbvalue_urls(
             _id=3,
+            _date = dt.today()
             _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
             _rec_by = "testman",
             _comment = "yeah!"
