@@ -1,7 +1,5 @@
 
 from flask import Flask, request, abort
-import os
-import psycopg2
 # from db_handler import *
 
 from linebot import (
@@ -17,7 +15,7 @@ from linebot.models import (
 
 )
 from linebot.models.actions import PostbackAction,URIAction
-
+import os
 import time
 import re
 
