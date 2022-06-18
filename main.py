@@ -57,8 +57,8 @@ def handle_message(event):
         columns_list = []
         for item in get_items():
             print(item)
-            columns_list.append(CarouselColumn(title=item["comment"], 
-                                text="recomended by {}".format(item["rec_by"]),
+            columns_list.append(CarouselColumn(title=item["title"], 
+                                text="recomended by: {} \n comment: {}".format(item["rec_by"],item["comment"]),
                                 actions=[URIAction(label="Listen it",uri=item["uri"])]))
         columns_list.append(CarouselColumn(title="nobodyknows+ - ココロオドル / THE FIRST TAKE", text="recomended by P{}".format(get_next_id()), actions=[URIAction(label="Listen it", uri=f"https://www.youtube.com/watch?v=XaVPr6HVrbI")]))
         carousel_template_message = TemplateSendMessage(
