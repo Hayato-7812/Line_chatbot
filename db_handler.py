@@ -7,7 +7,7 @@ import os
 # DATABASE_URL = os.environ['DATABASE_URL']
 DATABASE_URL = "postgres://kjzuxewitnsphz:44a69351639957534ac0f28bf0f16b24a6254a27c626b0a9faf3539df4a950d5@ec2-52-71-23-11.compute-1.amazonaws.com:5432/d93a1fm13467us"
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 
 
 LOGGER = logging.getLogger(__name__)
@@ -35,11 +35,12 @@ def dbopen():
         def wrapper(*args, **kwargs):
             # conn = sqlite3.connect("music.db")
             try:
+                conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                 cur = conn.cursor()
             except Exception as e:
                 print (e)
                 print("retry connecting ...")
-                conn = psycopg2.connect(DATABASE_URL)
+                conn = psycopg2.connect(DATABASE_URL, sslmode='require')
                 cur = conn.cursor()
             result = func(conn,cur,*args)
             conn.commit()
