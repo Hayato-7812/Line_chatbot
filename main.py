@@ -57,6 +57,11 @@ def handle_message(event):
         columns_list = []
         for item in get_items():
             print(item)
+            title=item["comment"]
+            text="recomended by {}".format(item["rec_by"])
+            label="Listen it"
+            uri=item["uri"]
+            print(title+" "+text+" "+uri)
             # columns_list.append(CarouselColumn(
             #                     title=item["comment"], 
             #                     text="recomended by {}".format(item["rec_by"]),
