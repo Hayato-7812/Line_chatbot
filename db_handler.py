@@ -21,7 +21,7 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1,_uri="", _rec_by="",_comment="",_rec_date=dt.today()):
+    def __init__(self,_id=-1,_rec_date="",_rec_by="",_uri="",_comment=""):
         self.id = _id
         self.rec_date = _rec_date
         self.rec_by = _rec_by
@@ -98,8 +98,8 @@ if __name__ == "__main__":
     
     # add_item(obj)
     # print(get_next_id())
-    item = get_items()
-    print(item)
+    item = get_items()[0]
+    print("aaa")
     
 
     # for item in get_items():
