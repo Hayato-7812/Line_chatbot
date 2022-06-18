@@ -21,14 +21,14 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1,_uri="", _rec_by="",_comment="",_date=dt.today()):
+    def __init__(self,_id=-1,_uri="", _rec_by="",_comment="",_rec_date=dt.today()):
         self.id = _id
-        self.date = _date
-        self.uri = _uri
+        self.rec_date = _rec_date
         self.rec_by = _rec_by
+        self.uri = _uri
         self.comment = _comment
-        self.attr= ["id","date","uri","rec_by","comment"]
-        self.table="A_MUSIC"
+        self.attr= ["id","rec_date","rec_by","uri","comment"]
+        self.table="F_MUSIC"
 
 def dbopen():
     def recv_func(func):
@@ -51,15 +51,15 @@ def add_item(conn,cur,obj:dbvalue_urls):
     # sql = 'INSERT INTO {} (ID,URI,REC_BY,COMMENT) VALUES(?,?,?,?)'.format(obj.table)
     # data = (obj.id, obj.uri,obj.rec_by,obj.comment)
     # cur.execute(sql, data)
-    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}'.'{}','{}')".format(obj.table,obj.date,obj.id,obj.uri,obj.rec_by,obj.comment))
+    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}'.'{}','{}')".format(obj.table,obj.id,obj.rec_date,obj.rec_by,obj.uri,obj.comment))
 
 @dbopen()
-def get_data(conn,cur,tablename = "A_MUSIC"):
+def get_data(conn,cur,tablename = "F_MUSIC"):
     sql = 'SELECT * FROM {}'.format(tablename)
     cur.execute(sql)
 
 @dbopen()
-def get_items(conn,cur,tablename="A_MUSIC"):  #as dict in list 
+def get_items(conn,cur,tablename="F_MUSIC"):  #as dict in list 
     # print("get db items")
     cur.execute("select * from {}".format(tablename))
     result = []
@@ -69,7 +69,7 @@ def get_items(conn,cur,tablename="A_MUSIC"):  #as dict in list
     return result
 
 @dbopen()
-def get_next_id(conn,cur,tablename="A_MUSIC"):
+def get_next_id(conn,cur,tablename="F_MUSIC"):
     sql = 'SELECT count(*) FROM {}'.format(tablename)
     cur.execute(sql)
     result = cur.fetchall()
@@ -80,18 +80,18 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
 
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # obj= dbvalue_urls(
     #         _id=3,
-    #         _date = dt.today(),
-    #         _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
+    #         _rec_date = dt.today(),
     #         _rec_by = "testman",
+    #         _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
     #         _comment = "yeah!"
     #     )
     
     # add_item(obj)
     # print(get_next_id())
-    # item = get_items()
+    item = get_items()
     # print("Sedefr")
     
 
