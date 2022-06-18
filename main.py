@@ -55,7 +55,7 @@ def handle_message(event):
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        for item in get_items():
+        # for item in get_items():
             # columns_list.append(CarouselColumn(
             #                     title=item["comment"], 
             #                     text="recomended by {}".format(item["rec_by"]),
