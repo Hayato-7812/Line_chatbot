@@ -21,13 +21,14 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1,_rec_date="",_rec_by="",_uri="",_comment=""):
+    def __init__(self,_id=-1,_rec_date="",_rec_by="",_title="",_uri="",_comment=""):
         self.id = _id
         self.rec_date = _rec_date
         self.rec_by = _rec_by
+        self.title = _title
         self.uri = _uri
         self.comment = _comment
-        self.attr= ["id","rec_date","rec_by","uri","comment"]
+        self.attr= ["id","rec_date","rec_by","title","uri","comment"]
         self.table="F_MUSIC"
 
 def dbopen():
@@ -58,7 +59,7 @@ def add_item(conn,cur,obj:dbvalue_urls):
     # sql = 'INSERT INTO {} (ID,URI,REC_BY,COMMENT) VALUES(?,?,?,?)'.format(obj.table)
     # data = (obj.id, obj.uri,obj.rec_by,obj.comment)
     # cur.execute(sql, data)
-    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}'.'{}','{}')".format(obj.table,obj.id,obj.rec_date,obj.rec_by,obj.uri,obj.comment))
+    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}','{}','{}','{}')".format(obj.table,obj.id,obj.rec_date,obj.title,obj.rec_by,obj.uri,obj.comment))
 
 @dbopen()
 def get_data(conn,cur,tablename = "F_MUSIC"):
@@ -72,7 +73,7 @@ def get_items(conn,cur,tablename="F_MUSIC"):  #as dict in list
     result = []
     for row in cur:
         # print("row:{}".format(row))
-        result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4]).to_dict())
+        result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4],row[5]).to_dict())
     return result
 
 @dbopen()
