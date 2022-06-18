@@ -95,3 +95,12 @@ if __name__ == "__main__":
     item = get_items()
     print("Sedefr")
     
+
+    # for item in get_items():
+        #     columns_list.append(CarouselColumn(
+        #                         title=item["comment"], 
+        #                         text="recomended by {}".format(item["rec_by"]),
+        #                         actions=[URIAction(label="Listen it",
+        #                         uri=item["uri"])]
+        #                         )
+        #                     )
