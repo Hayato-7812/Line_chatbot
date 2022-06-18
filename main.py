@@ -1,6 +1,8 @@
-
+import time
+import re
 from flask import Flask, request, abort
-# from db_handler import *
+import os
+from db_handler import *
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -15,9 +17,7 @@ from linebot.models import (
 
 )
 from linebot.models.actions import PostbackAction,URIAction
-import os
-import time
-import re
+
 
 app = Flask(__name__)
 
@@ -61,8 +61,15 @@ def handle_message(event):
         columns_list = []
         # for item in get_items():
         #     columns_list.append(CarouselColumn(thumbnail_image_url=None,title="Music", text=f"recomended by {item.user}", actions=[URIAction(label="Listen it", uri=f"{item.url}")]))
+        for item in get_items():
+            columns_list.append(CarouselColumn(
+                                title=item["comment"], 
+                                text="recomended by {}".format(item["rec_by"]),
+                                actions=[URIAction(label="Listen it",
+                                uri=item["uri"])]
+                                )
+                            )
         columns_list.append(CarouselColumn(title="nobodyknows+ - ココロオドル / THE FIRST TAKE", text=f"recomended by P", actions=[URIAction(label="Listen it", uri=f"https://www.youtube.com/watch?v=XaVPr6HVrbI")]))
-        columns_list.append(CarouselColumn(title="sana/HoneyWorks 『言葉のいらない約束』", text=f"recomended by Hama", actions=[URIAction(label="Listen it", uri=f"https://www.youtube.com/watch?v=S0uHhAVinVM")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='this is a music carousel',
                         template=CarouselTemplate(columns=columns_list)
