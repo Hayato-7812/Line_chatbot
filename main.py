@@ -20,8 +20,8 @@ from linebot.models.actions import PostbackAction,URIAction
 app = Flask(__name__)
 
 #環境変数取得
-# YOUR_CHANNEL_ACCESS_TOKEN = "4gqA1mKoeRc57EWpN7ghpb8mE2KrDidW4FAsMWpkM1n8js/+XsDQ4JgHuD5Sht2uI/MIGHS1nwE+SVrjX4kSJuaODDYWaUAsmbg5RPAa+Yegd1NJZv69Apx8a6CaQDa6xmxfogroZ1vxuInnGockqwdB04t89/1O/w1cDnyilFU="
-# YOUR_CHANNEL_SECRET = "1dc09f06b2d107b6c1310c8507f07f41"
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)

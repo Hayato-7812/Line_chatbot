@@ -6,7 +6,8 @@ import os
 from youtube_utils import *
 
 # DATABASE_URL = os.environ['DATABASE_URL']
-DATABASE_URL = "postgres://kjzuxewitnsphz:44a69351639957534ac0f28bf0f16b24a6254a27c626b0a9faf3539df4a950d5@ec2-52-71-23-11.compute-1.amazonaws.com:5432/d93a1fm13467us"
+# DATABASE_URL = "postgres://kjzuxewitnsphz:44a69351639957534ac0f28bf0f16b24a6254a27c626b0a9faf3539df4a950d5@ec2-52-71-23-11.compute-1.amazonaws.com:5432/d93a1fm13467us"
+DATABASE_URL = os.environ["DATABASE_URL"]
 
 
 
