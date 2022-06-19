@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request, abort
 import os
 from db_handler import *
@@ -87,7 +88,11 @@ def handle_message(event):
                 _comment = "Just try when you have time!"
             )
             add_item(item_obj)
-            
+            reply = "add  your favorite song '{}' to shared songs list!!".format(yt["title"])
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply))
+        
         except Exception as e:
             print("error: {}".format(e))
             line_bot_api.reply_message(
