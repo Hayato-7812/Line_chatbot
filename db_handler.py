@@ -3,6 +3,7 @@ import logging
 from datetime import datetime as dt 
 import psycopg2
 import os
+from youtube_utils import *
 
 # DATABASE_URL = os.environ['DATABASE_URL']
 DATABASE_URL = "postgres://kjzuxewitnsphz:44a69351639957534ac0f28bf0f16b24a6254a27c626b0a9faf3539df4a950d5@ec2-52-71-23-11.compute-1.amazonaws.com:5432/d93a1fm13467us"
@@ -90,15 +91,19 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
 
 
 if __name__ == "__main__":
-    # obj= dbvalue_urls(
-    #         _id=3,
-    #         _rec_date = dt.today(),
-    #         _rec_by = "testman",
-    #         _uri="https://www.youtube.com/watch?v=uAqITu9ypDo",
-    #         _comment = "yeah!"
-    #     )
+    input_url = "https://www.youtube.com/watch?v=n8cpqRJjumo"
+    yt = get_yt_info(input_url)
+    item_obj = dbvalue_urls(
+                _id=get_next_id(),
+                _rec_date = dt.today(),
+                _rec_by = "Hayato",
+                _title=yt["title"],
+                _uri= input_url,
+                _comment = "Just try when you have time!"
+            )
+    add_item(item_obj)
     
     # add_item(obj)
     # print(get_next_id())
-    item = get_items()[0]
-    print("aaa")
+    item = get_items()
+    print(item)

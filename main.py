@@ -85,7 +85,7 @@ def handle_message(event):
                 _uri= input_url,
                 _comment = "Just try when you have time!"
             )
-            add_item(obj=item_obj)
+            add_item(item_obj)
             
         except Exception as e:
             print("error: {}".format(e))
