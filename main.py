@@ -58,7 +58,7 @@ def handle_message(event):
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
         for item in get_items():
-            # print(item)
+            print(item)
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"][:37]+"...", 
                                 thumbnail_image_url=get_yt_info(item["uri"])["thumbnail_url"],
                                 text="recomended by: {}".format(item["rec_by"]),
@@ -70,7 +70,7 @@ def handle_message(event):
             )
         line_bot_api.reply_message(event.reply_token, messages=carousel_template_message)
     
-    elif event.message.text == " Visit the site!":
+    elif event.message.text == "Visit the site!":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
