@@ -21,7 +21,7 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1,_rec_date="",_rec_by="",_title="",_uri="",_comment=""):
+    def __init__(self,_id=-1,_rec_date="",_rec_by="",_title="",_uri="",_comment=None):
         self.id = _id
         self.rec_date = _rec_date
         self.rec_by = _rec_by
@@ -29,7 +29,7 @@ class dbvalue_urls(dbvalue_base):
         self.uri = _uri
         self.comment = _comment
         self.attr= ["id","rec_date","rec_by","title","uri","comment"]
-        self.table="F_MUSIC"
+        self.table="A_MUSIC"
 
 def dbopen():
     def recv_func(func):
@@ -59,15 +59,16 @@ def add_item(conn,cur,obj:dbvalue_urls):
     # sql = 'INSERT INTO {} (ID,URI,REC_BY,COMMENT) VALUES(?,?,?,?)'.format(obj.table)
     # data = (obj.id, obj.uri,obj.rec_by,obj.comment)
     # cur.execute(sql, data)
-    cur.execute("INSERT INTO {} VALUES ({}, '{}','{}','{}','{}','{}')".format(obj.table,obj.id,obj.rec_date,obj.title,obj.rec_by,obj.uri,obj.comment))
+    cur.execute("INSERT INTO {} (ID,REC_DATE,REC_BY,TITLE,URI,COMMENT) VALUES ({}, '{}','{}','{}','{}','{}')".format(obj.table,obj.id,obj.rec_date,obj.rec_by,obj.title,obj.uri,obj.comment))
+    print("add item('ID={},REC_DATE={},REC_BY={},TITLE={},URI={},COMMENT={}) to {}".format(obj.id,obj.rec_date,obj.rec_by,obj.title,obj.uri,obj.comment,obj.table))
 
 @dbopen()
-def get_data(conn,cur,tablename = "F_MUSIC"):
+def get_data(conn,cur,tablename = "A_MUSIC"):
     sql = 'SELECT * FROM {}'.format(tablename)
     cur.execute(sql)
 
 @dbopen()
-def get_items(conn,cur,tablename="F_MUSIC"):  #as dict in list 
+def get_items(conn,cur,tablename="A_MUSIC"):  #as dict in list 
     # print("get db items")
     cur.execute("select * from {}".format(tablename))
     result = []
@@ -77,7 +78,7 @@ def get_items(conn,cur,tablename="F_MUSIC"):  #as dict in list
     return result
 
 @dbopen()
-def get_next_id(conn,cur,tablename="F_MUSIC"):
+def get_next_id(conn,cur,tablename="A_MUSIC"):
     sql = 'SELECT count(*) FROM {}'.format(tablename)
     cur.execute(sql)
     result = cur.fetchall()

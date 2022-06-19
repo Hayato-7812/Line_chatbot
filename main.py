@@ -50,10 +50,9 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == "Share songs with others！":
-        profile = line_bot_api.get_profile(event.source.user_id)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="{}".format(profile)))
+            TextSendMessage(text="Please input YouTube link on the keyboard!!"))
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
@@ -74,8 +73,19 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     else:
-        try:
-            yt = get_yt_info(event.message.text)
+        try: #本当はここで追加の確認したい
+            input_url = event.message.text
+            yt = get_yt_info(input_url)
+            profile = line_bot_api.get_profile(event.source.user_id)
+            item_obj = dbvalue_urls(
+                _id=get_next_id(),
+                _rec_date = dt.today(),
+                _rec_by = profile,
+                _uri= input_url,
+                _comment = "Just try when you have time!"
+            )
+            add_item(obj=item_obj)
+            
         except:
             line_bot_api.reply_message(
             event.reply_token,
