@@ -58,8 +58,8 @@ def handle_message(event):
         columns_list = []
         for item in get_items():
             print(item)
-            columns_list.append(CarouselColumn(title=item["title"], 
-                                thumbnail_image_url=get_yt_info(item["uri"]["thumbnail_url"]),
+            columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"], 
+                                thumbnail_image_url=get_yt_info(item["uri"])["thumbnail_url"],
                                 text="recomended by: {} \n comment: {}".format(item["rec_by"],item["comment"]),
                                 actions=[URIAction(label="Listen it",uri=item["uri"])]))
         carousel_template_message = TemplateSendMessage(
