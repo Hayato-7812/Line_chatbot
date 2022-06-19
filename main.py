@@ -77,11 +77,11 @@ def handle_message(event):
             input_url = event.message.text
             yt = get_yt_info(input_url)
             profile = line_bot_api.get_profile(event.source.user_id)
-            print(profile)
+            account_name = profile.display_name
             item_obj = dbvalue_urls(
                 _id=get_next_id(),
                 _rec_date = dt.today(),
-                _rec_by = profile,
+                _rec_by = account_name,
                 _title=yt["title"],
                 _uri= input_url,
                 _comment = "Just try when you have time!"
