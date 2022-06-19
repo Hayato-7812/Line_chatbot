@@ -50,10 +50,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == "Share songs with others！":
-        # profile = line_bot_api.get_profile(event.source.userid)
+        profile = line_bot_api.get_profile(event.source.userId)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="{}".format(event.source)))
+            TextSendMessage(text="{}".format(profile)))
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
