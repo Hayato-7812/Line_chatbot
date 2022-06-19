@@ -81,6 +81,7 @@ def handle_message(event):
                 _id=get_next_id(),
                 _rec_date = dt.today(),
                 _rec_by = profile,
+                _title=yt["title"],
                 _uri= input_url,
                 _comment = "Just try when you have time!"
             )
