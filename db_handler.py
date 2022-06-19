@@ -101,13 +101,3 @@ if __name__ == "__main__":
     # print(get_next_id())
     item = get_items()[0]
     print("aaa")
-    
-
-    # for item in get_items():
-        #     columns_list.append(CarouselColumn(
-        #                         title=item["comment"], 
-        #                         text="recomended by {}".format(item["rec_by"]),
-        #                         actions=[URIAction(label="Listen it",
-        #                         uri=item["uri"])]
-        #                         )
-        #                     )

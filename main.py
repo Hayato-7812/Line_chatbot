@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 import os
 from db_handler import *
+from youtube_utils import *
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -51,16 +52,16 @@ def handle_message(event):
     if event.message.text == "Share songs with others！":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="input link"))
+            TextSendMessage(text="input link {}".format(event.source.user)))
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
         for item in get_items():
             print(item)
             columns_list.append(CarouselColumn(title=item["title"], 
+                                thumbnail_image_url=get_yt_info(item["uri"]["thumbnail_url"]),
                                 text="recomended by: {} \n comment: {}".format(item["rec_by"],item["comment"]),
                                 actions=[URIAction(label="Listen it",uri=item["uri"])]))
-        columns_list.append(CarouselColumn(title="nobodyknows+ - ココロオドル / THE FIRST TAKE", text="recomended by P{}".format(get_next_id()), actions=[URIAction(label="Listen it", uri=f"https://www.youtube.com/watch?v=XaVPr6HVrbI")]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='this is a music carousel',
                         template=CarouselTemplate(columns=columns_list)
@@ -72,7 +73,12 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     else:
-        pass
+        try:
+            yt = get_yt_info(event.message.text)
+        except:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="I'm sorry. You input invalid link to share. \nPlease input valid link or contact the developer (Hama,Hayato)if you need support."))
 
 
 if __name__ == "__main__":
