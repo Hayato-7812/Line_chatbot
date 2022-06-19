@@ -87,7 +87,8 @@ def handle_message(event):
             )
             add_item(obj=item_obj)
             
-        except:
+        except Exception as e:
+            print("error: {}".format(e))
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="I'm sorry. You input invalid link to share. \nPlease input valid link or contact the developer (Hama,Hayato)if you need support."))
