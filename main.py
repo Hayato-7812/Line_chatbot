@@ -61,7 +61,8 @@ def handle_message(event):
             print(item)
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"], 
                                 thumbnail_image_url=get_yt_info(item["uri"])["thumbnail_url"],
-                                text="recomended by: {} \n comment: {}".format(item["rec_by"],item["comment"]),
+                                text="recomended by: {}".format(item["rec_by"]),
+                                # text="recomended by: {} \ncomment: {}".format(item["rec_by"],item["comment"]),
                                 actions=[URIAction(label="Listen it",uri=item["uri"])]))
         carousel_template_message = TemplateSendMessage(
                         alt_text='this is a music carousel',
@@ -88,7 +89,7 @@ def handle_message(event):
                 _comment = "Just try when you have time!"
             )
             add_item(item_obj)
-            reply = "add  your favorite song '{}' to shared songs list!!".format(yt["title"])
+            reply = "add  your favorite song \n'{}'\n to shared songs list!!".format(yt["title"])
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=reply))
