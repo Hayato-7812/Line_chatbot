@@ -52,7 +52,7 @@ def handle_message(event):
     if event.message.text == "Share songs with others！":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="input link {}".format(event.source.user)))
+            TextSendMessage(text="input link {}".format(event.source)))
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
