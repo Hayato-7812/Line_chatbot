@@ -1,5 +1,5 @@
 import re
-from flask import Flask, request, abort
+from flask import Flask, request, abort,render_template
 import os
 from db_handler import *
 from youtube_utils import *
@@ -26,9 +26,9 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/")
-def Hello():
-    return "Hello!!"
+@app.route("/top_page")
+def index():
+    return render_template("index.html")
 
 @app.route("/callback", methods=['POST'])
 def callback():
