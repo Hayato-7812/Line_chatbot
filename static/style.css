@@ -1,0 +1,23 @@
+.header {
+    background-color: pink;
+    height: 150px;
+}
+
+.main {
+    background-color: peachpuff;
+    height: 600px;
+}
+
+.footer {
+    background-color: antiquewhite;
+    height: 270px;
+}
+
+li {
+    color: orange;
+}
+
+.resister_button {
+    font-size: 40px;
+    color: goldenrod;
+}
