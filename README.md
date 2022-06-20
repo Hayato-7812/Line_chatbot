@@ -59,10 +59,10 @@
 ABOUT THE PROJECT
 ## About The Project
 <div align="center">
-<img src="static/images/talkimage1.jpg" width="300" alt="demo" title="demo">
-<img src="static/images/talkimage2.jpg" width="300" alt="demo" title="demo">
-<img src="static/images/talkimage3.jpg" width="300" alt="demo" title="demo">
- 
+ <img src="static/images/talkimage1.jpg" width="300" alt="demo" title="demo">
+ <img src="static/images/talkimage2.jpg" width="300" alt="demo" title="demo">
+ <img src="static/images/talkimage3.jpg" width="300" alt="demo" title="demo">
+</div>
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
