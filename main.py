@@ -70,10 +70,10 @@ def handle_message(event):
             )
         line_bot_api.reply_message(event.reply_token, messages=carousel_template_message)
     
-    # elif event.message.text == "Visit the site!":
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-    #         TextSendMessage(text=event.message.text))
+    elif event.message.text == "Visit the site!":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text))
     else:
         try: #本当はここで追加の確認したい
             input_url = event.message.text
