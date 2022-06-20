@@ -1,0 +1,52 @@
+body {
+    width: 960px;
+    margin: auto;
+}
+
+.header {
+    background-color: rgb(221, 219, 219);
+    height: 150px;
+}
+
+.logo {
+    font-size: 50px;
+}
+
+.header_list li {
+    display: inline;
+}
+
+
+.main {
+    background-color: whitesmoke;
+    text-indent: 50px;
+
+}
+
+h2 {
+    font-size: 40px;
+}
+
+.list_a {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.resister_button {
+    height: 50px;
+    border: 0;
+    margin: 10px;
+    margin-left: 60px;
+}
+
+.talkimage {
+    width: 30%;
+    height: 30%;
+    margin: 10px;
+
+}
+
+.footer {
+    background-color: antiquewhite;
+    height: 270px;
+}
