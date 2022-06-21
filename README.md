@@ -46,9 +46,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -147,6 +144,24 @@ pytube==12.1.0
 
 ### Installation
 
+1. 下記添付サイトに従って、herokuのアカウント登録を行う。
+
+- [Getting Started on Heroku with Python | Heroku Dev Center](https://devcenter.heroku.com/articles/getting-started-with-python "Getting Started on Heroku with Python | Heroku Dev Center")
+</br>
+
+2. LINE Developersにて、アカウントの作成を行う。
+- [LINE Developers](https://developers.line.biz/en/ "a")
+</br>
+
+3. コマンドプロンプトにて任意のディレクトリに移動し、リポジトリをクローンする。
+```
+$ git clone https://github.com/Hayato-7812/LINE_chatbot.git
+```
+ ### References
+- [Webアプリ初心者のFlaskチュートリアル - Qiita](https://qiita.com/kro/items/67f7510b36945eb9689b "a")
+
+
+
 <!-- _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
  -->
 <!-- 1. Get a free API Key at [https://example.com](https://example.com)
@@ -169,7 +184,15 @@ pytube==12.1.0
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
+---
+1. <b>自分の好きな音楽を共有する！</b>
+- メニュー左のボタンを押して「Share songs with others!」と送信
+- Please input YouTube linkon the keyboard!!」と出るのでYouTubeリンクを送信
+- 共有完了！
+　
+2. <b>他の人のおすすめの音楽が知りたい！</b>
+- メニュー中央のボタンを押して「What are other people's favorite songs?」と送信
+- 他の人がおすすめした音楽が表示される！
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_ -->
@@ -178,51 +201,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 
 
 
-<!-- ROADMAP -->
-## Roadmap
-
-<!-- - [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese 
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
--->
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-<!-- Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. -->
-
-<!-- If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request -->
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-<!-- Distributed under the MIT License. See `LICENSE.txt` for more information. -->
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
 ## Contact
 
 <!-- Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
