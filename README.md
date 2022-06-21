@@ -122,7 +122,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <!-- GETTING STARTED -->
 ## Getting Started
----
 <!-- This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps. -->
 
@@ -184,7 +183,6 @@ $ git clone https://github.com/Hayato-7812/LINE_chatbot.git
 
 <!-- USAGE EXAMPLES -->
 ## Usage
----
 1. <b>自分の好きな音楽を共有する！</b>
 - メニュー左のボタンを押して「Share songs with others!」と送信
 - Please input YouTube linkon the keyboard!!」と出るのでYouTubeリンクを送信
