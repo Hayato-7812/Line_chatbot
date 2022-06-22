@@ -40,8 +40,8 @@ h2 {
 }
 
 .talkimage {
-    width: 30%;
-    height: 30%;
+    width: 35%;
+    height: 35%;
     margin: 10px;
 
 }
@@ -49,4 +49,13 @@ h2 {
 .footer {
     background-color: antiquewhite;
     height: 270px;
+}
+
+.talkimages {
+    display: flex;
+    overflow-x: scroll;
+}
+
+@media screen and (max-width: 1024px) {
+    
 }
