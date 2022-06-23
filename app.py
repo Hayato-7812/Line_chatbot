@@ -76,7 +76,31 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=event.message.text))
     else:
-        pass
+        try: #本当はここで追加の確認したい
+            input_url = event.message.text
+            yt = get_yt_info(input_url)
+            profile = line_bot_api.get_profile(event.source.user_id)
+            account_name = profile.display_name
+            item_obj = dbvalue_urls(
+                _id=get_next_id(),
+                _rec_date = dt.today(),
+                _rec_by = account_name,
+                _title=yt["title"],
+                _uri= input_url,
+                _comment = "Just try!"
+            )
+            add_item(item_obj)
+            reply = "add  your favorite song \n'{}'\n to shared songs list!!".format(yt["title"])
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply))
+        
+        except Exception as e:
+            print("error: {}".format(e))
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="I'm sorry. You input invalid link to share. \nPlease input valid link or contact the developer (Hama,Hayato)if you need support."))
+
 
 
 if __name__ == "__main__":
