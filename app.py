@@ -3,7 +3,7 @@ from flask import Flask, request, abort,render_template
 import os
 from db_handler import *
 from youtube_utils import *
-import pprint
+
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -60,8 +60,9 @@ def handle_message(event):
         columns_list = []
         items = get_items()
         random_select_items = items[:1] + random.sample(items[1:], 8)
-        pprint.pprint(random_select_items)
+      
         for item in random_select_items:
+            print("item add to CarouselColumn : {}".format(item))
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"][:37]+"...", 
                                 thumbnail_image_url=get_yt_info(item["uri"])["thumbnail_url"],
                                 text="recomended by: {}".format(item["rec_by"]),
