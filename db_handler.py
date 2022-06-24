@@ -90,19 +90,20 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
 
 
 if __name__ == "__main__":
-    input_url = "https://www.youtube.com/watch?v=n8cpqRJjumo"
-    yt = get_yt_info(input_url)
-    item_obj = dbvalue_urls(
-                _id=get_next_id(),
-                _rec_date = dt.today(),
-                _rec_by = "Hayato",
-                _title=yt["title"],
-                _uri= input_url,
-                _comment = "Just try when you have time!"
-            )
-    add_item(item_obj)
+    # input_url = "https://www.youtube.com/watch?v=n8cpqRJjumo"
+    # yt = get_yt_info(input_url)
+    # item_obj = dbvalue_urls(
+    #             _id=get_next_id(),
+    #             _rec_date = dt.today(),
+    #             _rec_by = "Hayato",
+    #             _title=yt["title"],
+    #             _uri= input_url,
+    #             _comment = "Just try when you have time!"
+    #         )
+    # add_item(item_obj)
     
-    # add_item(obj)
-    # print(get_next_id())
-    item = get_items()
-    print(item)
+    # # add_item(obj)
+    # # print(get_next_id())
+    # item = get_items()
+    # print(item)
+    pass
