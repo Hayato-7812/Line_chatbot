@@ -59,6 +59,7 @@ def handle_message(event):
         columns_list = []
         items = get_items()
         random_select_items = items[:1] + random.sample(items[1:], 9)
+        print(random_select_items)
         for item in random_select_items:
             print(item)
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"][:37]+"...", 
