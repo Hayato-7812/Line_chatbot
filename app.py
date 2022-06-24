@@ -26,7 +26,7 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/top_page")
+@app.route("/top_page", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
 
@@ -57,7 +57,9 @@ def handle_message(event):
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        for item in get_items():
+        items = get_items()
+        random_select_items = items[:1] + random.sample(items[1:], 9)
+        for item in random_select_items:
             print(item)
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"][:37]+"...", 
                                 thumbnail_image_url=get_yt_info(item["uri"])["thumbnail_url"],
