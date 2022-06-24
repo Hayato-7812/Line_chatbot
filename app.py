@@ -58,7 +58,7 @@ def handle_message(event):
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
         items = get_items()
-        random_select_items = items[:1] + random.sample(items[1:], 9)
+        random_select_items = items[:1] + random.sample(items[1:], 8)
         print(random_select_items)
         for item in random_select_items:
             print(item)
