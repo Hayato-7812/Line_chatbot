@@ -18,7 +18,9 @@ from linebot.models import (
 
 )
 from linebot.models.actions import PostbackAction,URIAction
-app = Flask(__name__)
+
+app = Flask(__name__,  static_url_path="/static")
+
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
@@ -28,7 +30,7 @@ line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/top_page", methods=["GET", "POST"])
-def index():
+def toppage():
     return render_template("index.html")
 
 @app.route("/callback", methods=['POST'])
@@ -60,7 +62,6 @@ def handle_message(event):
         columns_list = []
         items = get_items()
         random_select_items = items[:1] + random.sample(items[1:], 8)
-      
         for item in random_select_items:
             print("item add to CarouselColumn : {}".format(item))
             columns_list.append(CarouselColumn(title=get_yt_info(item["uri"])["title"][:37]+"...", 
