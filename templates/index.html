@@ -96,7 +96,47 @@
             </section>
 
         </div>
-
+    
+    <!-- Footer -->
+    <section class="Footer">
+        <footer>
+            <h1>お問い合わせ</h1>
+            <form action="" method="post">
+                <ul>
+                    <li>
+                        <label for="rendou">お名前: </label>
+                        <input id="rendou" type="text" name="yourname" placeholder="例) 濱　俊也">
+                    </li>
+                    <li>
+                        <label for="rendou">LINE名: </label>
+                        <input id="rendou" type="text" name="LINEname" placeholder="例) Toshiya Hama">
+                    </li>
+                    <li>
+                        <label for="mail">メールアドレス: </label>
+                        <input id="mail" type="email" name="mail" placeholder="例) abcdefg@abcd.com">
+                    </li>
+                    <li>
+                        <label for="comment">お問い合わせ内容:</label>
+                        <li>
+                        <select name="お問い合わせ内容" id="お問い合わせ内容">
+                            <option value="db1">自分が登録した音楽について</option>
+                            <option value="db2">他人が登録した音楽について</option>
+                            <option value="db_del">音楽を削除してほしい</option>
+                            <option value="claim">機能について(改善・要望)</option>
+                            <option value="else">その他</option>
+                        </select>
+                        </li>
+                        <li>
+                            <textarea name="comment" id="comment" placeholder="ここにお問い合わせ内容を記述してください"></textarea>   
+                        </li>
+                        <li>
+                            <input type="submit" value="送信">
+                        </li>
+                    </li>
+                </ul>    
+            </form>
+        </footer>
+    </section>
     </div>
 </body>
 
