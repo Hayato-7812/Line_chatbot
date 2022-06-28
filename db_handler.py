@@ -29,6 +29,18 @@ class dbvalue_urls(dbvalue_base):
         self.attr= ["id","rec_date","rec_by","title","uri","comment"]
         self.table="A_MUSIC"
 
+# Webページに関すること
+    # ここでお問い合わせフォームに入力されたものをデータベースに保存して、
+    # contact_required.htmlで入力情報の確認と、
+    # 管理人(hama,P)が専用ページで問い合わせ一覧が見れるようにしたい
+    # 確認したいこと<1>: 使っているデータベースは何か → PostgreSQL
+    # 確認したいこと<2>: 前に合ったmusic.dbはどこいった？？
+    # db追加したい項目１:名前
+    # db追加したい項目２:LINE名
+    # db追加したい項目３:メールアドレスorLINEアカウント
+    # # db追加したい項目４:お問い合わせ内容
+
+
 def dbopen():
     def recv_func(func):
         def wrapper(*args, **kwargs):
