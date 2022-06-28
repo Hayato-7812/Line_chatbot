@@ -1,2 +1,4 @@
 Flask==2.1.2
 line-bot-sdk==2.2.1
+psycopg2-binary==2.9.3
+pytube==12.1.0
