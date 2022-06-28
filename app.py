@@ -18,7 +18,9 @@ from linebot.models import (
 
 )
 from linebot.models.actions import PostbackAction,URIAction
+
 app = Flask(__name__,  static_url_path="/static")
+
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
