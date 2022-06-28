@@ -29,9 +29,14 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+# Webページに関すること
 @app.route("/top_page", methods=["GET", "POST"])
 def toppage():
     return render_template("index.html")
+
+@app.route("/sharedmusic")
+def sharemusic():
+    return render_template("musiclist.html")
 
 @app.route("/callback", methods=['POST'])
 def callback():
