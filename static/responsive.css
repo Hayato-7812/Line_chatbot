@@ -70,21 +70,21 @@
         height: auto;
     }
     .header h1 {
-        font-size: 90px;
+        font-size: 70px;
     }
     .header ul {
         float: none;
-        font-size: 30px;
+        font-size: 15px;
     }
 
     .main {
         width: 100%;
-        font-size: 30px;
+        font-size: 15px;
         text-indent: 5px;
 
     }
     .main h2 {
-        font-size: 70px;
+        font-size: 30px;
     }
 
     .talkimage {
@@ -104,11 +104,6 @@
     .Footer {
         width: 100%;
         height: auto;
-    }
-
-    .Footer textarea {
-        resize: none;
-        width: 90%;
-        height: 20%;
+        font-size: 15px;
     }
 }

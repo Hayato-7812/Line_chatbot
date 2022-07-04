@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/responsive.css">
+    <title>お問い合わせ</title>
+</head>
+<body>
+    <!-- header -->
+    <section class="header">
+        <header>
+            <h1 class="logo"><a href="index.html">HamaPfy</a> </h1>
+        </header>
+
+    </section>
+    <!-- main -->
+    <div class="main">
+        <h2>お問い合わせ</h2>
+            <form  method="post">
+                <ul>
+                    <li>
+                        <label for="rendou">お名前: </label>
+                        <input id="rendou" type="text" name="yourname" placeholder="例) 濱　俊也">
+                    </li>
+                    <li>
+                        <label for="rendou">LINE名: </label>
+                        <input id="rendou" type="text" name="LINEname" placeholder="例) Toshiya Hama">
+                    </li>
+                    <li>
+                        <label for="mail">メールアドレス: </label>
+                        <input id="mail" type="email" name="mail" placeholder="例) abcdefg@abcd.com">
+                    </li>
+                    <li>
+                        <label for="comment">お問い合わせ内容:</label>
+                        <li>
+                        <select name="content" id="content">
+                            <option value="db1">自分が登録した音楽について</option>
+                            <option value="db2">他人が登録した音楽について</option>
+                            <option value="db_del">音楽を削除してほしい</option>
+                            <option value="claim">機能について(改善・要望)</option>
+                            <option value="else">その他</option>
+                        </select>
+                        </li>
+                        <li>
+                            <textarea name="comment" id="comment" placeholder="ここにお問い合わせ内容を記述してください"></textarea>   
+                        </li>
+                        <li>
+                            <input type="submit" value="送信">
+                        </li>
+                    </li>
+                </ul>    
+            </form>
+    </div>
+</body>
+</html>
