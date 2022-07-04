@@ -1,12 +1,12 @@
 
 body {
-    width: 960px;
+    width: 100%;
     margin: auto;
 }
 
 .header {
     background-color: rgb(102, 235, 146);
-    height: 150px;
+    height: auto;
 }
 
 .header h1 a {
@@ -25,11 +25,14 @@ body {
 .main {
     background-color: whitesmoke;
     text-indent: 50px;
-
 }
 
 .main h2 {
     font-size: 40px;
+}
+
+.main ul {
+    list-style: none;
 }
 
 .list_a {
