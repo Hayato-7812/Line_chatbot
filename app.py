@@ -96,6 +96,10 @@ def toppage():
 def sharedmusic():
     return render_template("musiclist.html")
 
+@app.route("/sharedmusic")
+def sharemusic():
+    return render_template("musiclist.html")
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
