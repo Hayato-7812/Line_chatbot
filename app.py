@@ -87,10 +87,10 @@ def toppage():
             # データベースを作成
         """
 
-        return redirect("/contact_requied")
+        return render_template("/contact_requied")
 
-    else:
-        return render_template("index.html")
+    # else:
+    #     return render_template("index.html")
 
 @app.route("/sharedmusic")
 def sharedmusic():

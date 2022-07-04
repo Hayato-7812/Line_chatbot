@@ -1,3 +1,4 @@
+
 body {
     width: 960px;
     margin: auto;
@@ -6,6 +7,10 @@ body {
 .header {
     background-color: rgb(102, 235, 146);
     height: 150px;
+}
+
+.header h1 a {
+    text-decoration: none;
 }
 
 .logo {
@@ -23,7 +28,7 @@ body {
 
 }
 
-h2 {
+.main h2 {
     font-size: 40px;
 }
 
@@ -68,10 +73,4 @@ textarea {
 .talkimages {
     display: flex;
     overflow-x: scroll;
-}
-
-
-
-@media screen and (max-width: 1024px) {
-    
 }
