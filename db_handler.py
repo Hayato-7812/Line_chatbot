@@ -19,7 +19,7 @@ class dbvalue_base():
         return {k:str(getattr(self,k)) for k in self.attr}
 
 class dbvalue_urls(dbvalue_base):
-    def __init__(self,_id=-1,_rec_date="",_rec_by="",_title="",_uri="",_comment=None):
+    def __init__(self,_id=-1,_rec_date="",_rec_by="",_title="",_uri="",_comment=None,_yourname="",_LINEname="",_mail="",_content="",_comment2=""):
         self.id = _id
         self.rec_date = _rec_date
         self.rec_by = _rec_by
@@ -29,16 +29,24 @@ class dbvalue_urls(dbvalue_base):
         self.attr= ["id","rec_date","rec_by","title","uri","comment"]
         self.table="A_MUSIC"
 
+        # db追加したい項目１:名前
+        # db追加したい項目２:LINE名
+        # db追加したい項目３:メールアドレスorLINEアカウント
+        # db追加したい項目４:お問い合わせ内容
+        # db追加したい項目5:問い合わせ詳細
+        self.yourname = _yourname
+        self.LINEname = _LINEname
+        self.mail = _mail
+        self.content = _content
+        self.comment2 = _comment2
+        self.attr2= ["yourname","LINEname","mail","content","comment2"]
+        self.table2="A_CONTACT"
+
 # Webページに関すること
     # ここでお問い合わせフォームに入力されたものをデータベースに保存して、
     # contact_required.htmlで入力情報の確認と、
-    # 管理人(hama,P)が専用ページで問い合わせ一覧が見れるようにしたい
-    # 確認したいこと<1>: 使っているデータベースは何か → PostgreSQL
-    # 確認したいこと<2>: 前に合ったmusic.dbはどこいった？？
-    # db追加したい項目１:名前
-    # db追加したい項目２:LINE名
-    # db追加したい項目３:メールアドレスorLINEアカウント
-    # # db追加したい項目４:お問い合わせ内容
+    # 管理人(hama,P)が問い合わせ一覧が見れるようにしたい
+    
 
 
 def dbopen():
@@ -99,7 +107,41 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
     # print ('登録されている総レコード数 ==> ', record_max)
     return record_max+1
 
+# お問い合わせフォーム部分  関数は全て"2"を語尾につけた
 
+@dbopen()
+def add_item2(conn,cur,obj:dbvalue_urls):
+    cur.execute("INSERT INTO {} (YOURNAME,LINENAME,MAIL,CONTENT,COMMENT2) VALUES ({}, '{}','{}','{}','{}','{}')".format(obj.table2,obj.yourname,obj.LINEname,obj.mail,obj.content,obj.comment2))
+    print("add item('YOURNAME={},LINENAME={},MAIL={},CONTENT={},COMMENT2={}) to {}".format(obj.yourname,obj.LINEname,obj.mail,obj.content,obj.comment2,obj.table2))
+
+@dbopen()
+def get_data2(conn,cur,tablename = "A_CONTACT"):
+    sql = 'SELECT * FROM {}'.format(tablename)
+    cur.execute(sql)
+
+@dbopen()
+def get_items2(conn,cur,tablename="A_CONTACT"):  #as dict in list 
+    # print("get db items")
+    cur.execute("select * from {}".format(tablename))
+    result = []
+    for row in cur:
+        # print("row:{}".format(row))
+        result.append(dbvalue_urls(row[8],row[9],row[10],row[11],row[12]).to_dict())
+    result.reverse()
+    
+    return result
+
+@dbopen()
+def get_next_id2(conn,cur,tablename2="A_CONTACT"):
+    sql = 'SELECT count(*) FROM {}'.format(tablename2)
+    cur.execute(sql)
+    result = cur.fetchall()
+    # print (result)
+    record_max = result[0][0]
+    # print ('登録されている総レコード数 ==> ', record_max)
+    return record_max+1
+
+# 問い合わせ部分ここまで
 
 if __name__ == "__main__":
     # input_url = "https://www.youtube.com/watch?v=n8cpqRJjumo"
