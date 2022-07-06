@@ -30,71 +30,45 @@ line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # Webページに関すること
-@app.route("/contact_reqired")
-def requied():
-    return render_template("contact_required.html")
-
 @app.route("/top_page", methods=["GET", "POST"])
 def toppage():
-    # お問い合わせフォームに関して
+    return render_template("index.html")
+
+@app.route("/contact_form", methods=["GET", "POST"])
+def contact_form():
+    """
+    お問い合わせフォームで入力された内容をdbに格納したい!!
+    名前(yourname)・LINE名(LINEname)・メールアドレス(mail)・問い合わせ内容(content)・問い合わせ詳細(contact)
+    上記の5つを格納したdbを作成。
+    """
+    #送信ボタンを押したとき
     if request.method == "POST":
+        # contact.htmlから情報を引っ張ってくる
         yourname = request.form.get("yourname")
         LINEname = request.form.get("LINEname")
         mail = request.form.get("mail")
         content = request.form.get("content")
-        comment = request.form.get("comment")
+        comment2 = request.form.get("comment2")
 
-        """
-        PostgreSQLの書き方に準拠しなきゃ...だけど
-        書き方が分からないので。Pちゃんに聞いてから直します。
+        # db(A_CONTACT)に格納したい
+        item_obj2 = dbvalue_urls(
+                _yourname = yourname,
+                _LINEname = LINEname,
+                _mail = mail,
+                _content = content,
+                _comment2 = comment2
+            )
+        add_item2(item_obj2)
         
-        お問い合わせフォームで入力された内容をdbに格納したい!!
-        上記の5つ+投稿時間を格納したdbを作成。
-        """
+        # お問い合わせありがとうページの表示
+        return render_template("contact_required.html")
+    else:
+        return render_template("contact.html")
 
-        # 以下プログラム
-        """
-        from flask_sqlalchemy import SQLAlchemy
-        from datetime import datetime
-        import pytz
+@app.route("/contact_reqired")
+def requied():
+    return render_template("contact_required.html")
 
-        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
-        db = SQLAlchemy(app)
-
-        class Post(db.Model):
-            yourname = db.Column(db.String(80), nullable=False)
-            LINEname = db.Column(db.String(80), nullable=False)
-            mail = db.Column(db.String(80), unique=True, nullable=False)
-            content = db.Column(db.String(50), nullable=False)
-            comment = db.Column(db.String(500), nullable=False)
-            created_at = db.Column(db.Datetime, nullable=False, default=datetime.now(pytz.timezone("Asia/Tokyo")))
-
-
-        # インスタンス化
-        post = Post(yourname=yourname, LINEname=LINEname, mail=mail, content=content, comment=comment)
-
-        db.session.add(post)
-        db.seseion.commit()
-
-        """
-
-        """
-        まずやること
-        $ python3
-        $ from app import db
-            # Warningがでるが気にしない
-        $ db.create_all()
-            # データベースを作成
-        """
-
-        return render_template("/contact_requied")
-
-    # else:
-    #     return render_template("index.html")
-
-@app.route("/sharedmusic")
-def sharedmusic():
-    return render_template("musiclist.html")
 
 @app.route("/sharedmusic")
 def sharemusic():
