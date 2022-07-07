@@ -77,3 +77,7 @@ textarea {
     display: flex;
     overflow-x: scroll;
 }
+
+.contact_required {
+    text-align: center;
+}

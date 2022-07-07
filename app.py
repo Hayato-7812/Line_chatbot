@@ -1,4 +1,5 @@
 import re
+from db_handler import Contact
 from flask import Flask, request, abort,render_template, redirect
 import os
 from db_handler import *
@@ -34,6 +35,10 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 def toppage():
     return render_template("index.html")
 
+@app.route("/contact_reqired")
+def requied():
+    return render_template("contact_required.html")
+
 @app.route("/contact_form", methods=["GET", "POST"])
 def contact_form():
     """
@@ -51,24 +56,19 @@ def contact_form():
         comment2 = request.form.get("comment2")
 
         # db(A_CONTACT)に格納したい
-        item_obj2 = dbvalue_urls(
+        item_contact_obj = Contact(
                 _yourname = yourname,
                 _LINEname = LINEname,
                 _mail = mail,
                 _content = content,
                 _comment2 = comment2
             )
-        add_item2(item_obj2)
+        add_contactitem(item_contact_obj)
         
         # お問い合わせありがとうページの表示
         return render_template("contact_required.html")
     else:
         return render_template("contact.html")
-
-@app.route("/contact_reqired")
-def requied():
-    return render_template("contact_required.html")
-
 
 @app.route("/sharedmusic")
 def sharemusic():
@@ -101,7 +101,7 @@ def handle_message(event):
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        items = get_items()
+        items = get_musicitems()
         random_select_items = items[:1] + random.sample(items[1:], 8)
         for item in random_select_items:
             print("item add to CarouselColumn : {}".format(item))
@@ -126,7 +126,7 @@ def handle_message(event):
             yt = get_yt_info(input_url)
             profile = line_bot_api.get_profile(event.source.user_id)
             account_name = profile.display_name
-            item_obj = dbvalue_urls(
+            item_music_obj = dbvalue_urls(
                 _id=get_next_id(),
                 _rec_date = dt.today(),
                 _rec_by = account_name,
@@ -134,7 +134,7 @@ def handle_message(event):
                 _uri= input_url,
                 _comment = "Just try!"
             )
-            add_item(item_obj)
+            add_musicitem(item_music_obj)
             reply = "add  your favorite song \n'{}'\n to shared songs list!!".format(yt["title"])
             line_bot_api.reply_message(
                 event.reply_token,
