@@ -94,7 +94,7 @@ def get_musicitems(conn,cur,tablename="A_MUSIC"):  #as dict in list
     result = []
     for row in cur:
         # print("row:{}".format(row))
-        result.append(Contact(row[0],row[1],row[2],row[3],row[4],row[5]).to_dict())
+        result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4],row[5]).to_dict())
     result.reverse()
     
     return result
