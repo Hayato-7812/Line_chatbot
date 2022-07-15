@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+
+
+@media (max-width: 1024px) {
+    /* タブレット用 */
+    .header {
+        width: 100%;
+        font-size: 45px;
+        float: none;
+        height: auto;
+    }
+    .header h1 {
+        font-size: 135px;
+    }
+    .header ul {
+        float: none;
+        font-size: 45px;
+    }
+
+    .main {
+        width: 100%;
+        font-size: 35px;
+        text-indent: 10px;
+
+    }
+    .main h2 {
+        font-size: 70px;
+    }
+
+    .talkimage {
+        width: 70%;
+        height: 70%;
+        margin: 10px;
+    
+    }
+
+    .register_button {
+        height: 40px;
+        border: 0;
+        margin: 8px;
+        margin-left: 48px;
+    }
+
+    .Footer {
+        width: 100%;
+        height: auto;
+        font-size: 35px;
+    }
+
+    .Footer h1 {
+        font-size: 70px;
+    }
+
+    .Footer textarea {
+        resize: none;
+        width: 90%;
+        height: 20%;
+    }
+    
+}
+
+@media (max-width: 670px) {
+    /* スマートフォン用 */
+    
+    .header {
+        width: 100%;
+        font-size: 30px;
+        float: none;
+        height: auto;
+    }
+    .header h1 {
+        font-size: 70px;
+    }
+    .header ul {
+        float: none;
+        font-size: 15px;
+    }
+
+    .main {
+        width: 100%;
+        font-size: 15px;
+        text-indent: 5px;
+
+    }
+    .main h2 {
+        font-size: 30px;
+    }
+
+    .talkimage {
+        width: 70%;
+        height: 70%;
+        margin: 10px;
+    
+    }
+
+    .register_button {
+        height: 25px;
+        border: 0;
+        margin: 5px;
+        margin-left: 30px;
+    }
+
+    .Footer {
+        width: 100%;
+        height: auto;
+        font-size: 15px;
+    }
+}

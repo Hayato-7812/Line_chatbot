@@ -1,5 +1,6 @@
 import re
-from flask import Flask, request, abort,render_template
+from db_handler import Contact
+from flask import Flask, request, abort,render_template, redirect
 import os
 from db_handler import *
 from youtube_utils import *
@@ -29,9 +30,49 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+# Webページに関すること
 @app.route("/top_page", methods=["GET", "POST"])
 def toppage():
     return render_template("index.html")
+
+@app.route("/contact_reqired")
+def requied():
+    return render_template("contact_required.html")
+
+@app.route("/contact_form", methods=["GET", "POST"])
+def contact_form():
+    """
+    お問い合わせフォームで入力された内容をdbに格納したい!!
+    名前(yourname)・LINE名(LINEname)・メールアドレス(mail)・問い合わせ内容(content)・問い合わせ詳細(contact)
+    上記の5つを格納したdbを作成。
+    """
+    #送信ボタンを押したとき
+    if request.method == "POST":
+        # contact.htmlから情報を引っ張ってくる
+        yourname = request.form.get("yourname")
+        LINEname = request.form.get("LINEname")
+        mail = request.form.get("mail")
+        content = request.form.get("content")
+        comment2 = request.form.get("comment2")
+
+        # db(A_CONTACT)に格納したい
+        item_contact_obj = Contact(
+                _yourname = yourname,
+                _LINEname = LINEname,
+                _mail = mail,
+                _content = content,
+                _comment2 = comment2
+            )
+        add_contactitem(item_contact_obj)
+        
+        # お問い合わせありがとうページの表示
+        return render_template("contact_required.html")
+    else:
+        return render_template("contact.html")
+
+@app.route("/sharedmusic")
+def sharemusic():
+    return render_template("musiclist.html")
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -60,7 +101,7 @@ def handle_message(event):
 
     elif event.message.text == "What are other people's favorite songs?":
         columns_list = []
-        items = get_items()
+        items = get_musicitems()
         random_select_items = items[:1] + random.sample(items[1:], 8)
         for item in random_select_items:
             print("item add to CarouselColumn : {}".format(item))
@@ -85,7 +126,7 @@ def handle_message(event):
             yt = get_yt_info(input_url)
             profile = line_bot_api.get_profile(event.source.user_id)
             account_name = profile.display_name
-            item_obj = dbvalue_urls(
+            item_music_obj = dbvalue_urls(
                 _id=get_next_id(),
                 _rec_date = dt.today(),
                 _rec_by = account_name,
@@ -93,7 +134,7 @@ def handle_message(event):
                 _uri= input_url,
                 _comment = "Just try!"
             )
-            add_item(item_obj)
+            add_musicitem(item_music_obj)
             reply = "add  your favorite song \n'{}'\n to shared songs list!!".format(yt["title"])
             line_bot_api.reply_message(
                 event.reply_token,

@@ -29,6 +29,28 @@ class dbvalue_urls(dbvalue_base):
         self.attr= ["id","rec_date","rec_by","title","uri","comment"]
         self.table="A_MUSIC"
 
+class Contact(dbvalue_base):
+    def __init__(self,_yourname="",_LINEname="",_mail="",_content="",_comment2=""):
+        # db追加したい項目１:名前
+        # db追加したい項目２:LINE名
+        # db追加したい項目３:メールアドレスorLINEアカウント
+        # db追加したい項目４:お問い合わせ内容
+        # db追加したい項目5:問い合わせ詳細
+        self.yourname = _yourname
+        self.LINEname = _LINEname
+        self.mail = _mail
+        self.content = _content
+        self.comment2 = _comment2
+        self.attr2= ["yourname","LINEname","mail","content","comment2"]
+        self.table2="A_CONTACT"
+
+# Webページに関すること
+    # ここでお問い合わせフォームに入力されたものをデータベースに保存して、
+    # contact_required.htmlで入力情報の確認と、
+    # 管理人(hama,P)が問い合わせ一覧が見れるようにしたい
+    
+
+
 def dbopen():
     def recv_func(func):
         def wrapper(*args, **kwargs):
@@ -50,7 +72,7 @@ def dbopen():
     return recv_func
  
 @dbopen()
-def add_item(conn,cur,obj:dbvalue_urls):
+def add_musicitem(conn,cur,obj:dbvalue_urls):
     # data = (obj.id, obj.uri,datetime.today(),obj.rec_by,obj.comment)
     # sql = 'INSERT INTO {} (ID,URL,USER,DATE,COMMENT) VALUES(?,?,?,?,?)'.format("urls")
     # cur.execute(sql,data)
@@ -61,24 +83,24 @@ def add_item(conn,cur,obj:dbvalue_urls):
     print("add item('ID={},REC_DATE={},REC_BY={},TITLE={},URI={},COMMENT={}) to {}".format(obj.id,obj.rec_date,obj.rec_by,obj.title,obj.uri,obj.comment,obj.table))
 
 @dbopen()
-def get_data(conn,cur,tablename = "A_MUSIC"):
+def get_musicdata(conn,cur,tablename = "A_MUSIC"):
     sql = 'SELECT * FROM {}'.format(tablename)
     cur.execute(sql)
 
 @dbopen()
-def get_items(conn,cur,tablename="A_MUSIC"):  #as dict in list 
+def get_musicitems(conn,cur,tablename="A_MUSIC"):  #as dict in list 
     # print("get db items")
     cur.execute("select * from {}".format(tablename))
     result = []
     for row in cur:
         # print("row:{}".format(row))
-        result.append(dbvalue_urls(row[0],row[1],row[2],row[3],row[4],row[5]).to_dict())
+        result.append(Contact(row[0],row[1],row[2],row[3],row[4],row[5]).to_dict())
     result.reverse()
     
     return result
 
 @dbopen()
-def get_next_id(conn,cur,tablename="A_MUSIC"):
+def get_music_next_id(conn,cur,tablename="A_MUSIC"):
     sql = 'SELECT count(*) FROM {}'.format(tablename)
     cur.execute(sql)
     result = cur.fetchall()
@@ -87,7 +109,44 @@ def get_next_id(conn,cur,tablename="A_MUSIC"):
     # print ('登録されている総レコード数 ==> ', record_max)
     return record_max+1
 
+# <お問い合わせフォーム部分>
 
+@dbopen()
+def add_contactitem(conn,cur,obj:Contact):
+    # sql = 'INSERT INTO {} (YOURNAME,LINENAME,MAIL,CONTENT,COMMENT2) VALUES(?,?,?,?)'.format(obj.table2)
+    # data = (obj.yourname, obj.LINEname,obj.mail,obj.content,obj.comment2)
+    # cur.execute(sql, data)
+    cur.execute("INSERT INTO {} (YOURNAME,LINENAME,MAIL,CONTENT,COMMENT2) VALUES ('{}', '{}','{}','{}','{}')".format(obj.table2,obj.yourname,obj.LINEname,obj.mail,obj.content,obj.comment2))
+    print("add item('YOURNAME={},LINENAME={},MAIL={},CONTENT={},COMMENT2={}) to {}".format(obj.yourname,obj.LINEname,obj.mail,obj.content,obj.comment2,obj.table2))
+
+@dbopen()
+def get_contactdata(conn,cur,tablename = "A_CONTACT"):
+    sql = 'SELECT * FROM {}'.format(tablename)
+    cur.execute(sql)
+
+@dbopen()
+def get_contactitems(conn,cur,tablename="A_CONTACT"):  #as dict in list 
+    # print("get db items")
+    cur.execute("select * from {}".format(tablename))
+    result = []
+    for row in cur:
+        # print("row:{}".format(row))
+        result.append(Contact(row[0],row[1],row[2],row[3],row[4]).to_dict())
+    result.reverse()
+    
+    return result
+
+@dbopen()
+def get_contact_next_id(conn,cur,tablename2="A_CONTACT"):
+    sql = 'SELECT count(*) FROM {}'.format(tablename2)
+    cur.execute(sql)
+    result = cur.fetchall()
+    # print (result)
+    record_max = result[0][0]
+    # print ('登録されている総レコード数 ==> ', record_max)
+    return record_max+1
+
+# <お問い合わせフォーム部分ここまで>
 
 if __name__ == "__main__":
     # input_url = "https://www.youtube.com/watch?v=n8cpqRJjumo"

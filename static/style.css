@@ -1,11 +1,16 @@
+
 body {
-    width: 960px;
+    width: 100%;
     margin: auto;
 }
 
 .header {
     background-color: rgb(102, 235, 146);
-    height: 150px;
+    height: auto;
+}
+
+.header h1 a {
+    text-decoration: none;
 }
 
 .logo {
@@ -20,11 +25,14 @@ body {
 .main {
     background-color: whitesmoke;
     text-indent: 50px;
-
 }
 
-h2 {
+.main h2 {
     font-size: 40px;
+}
+
+.main ul {
+    list-style: none;
 }
 
 .list_a {
@@ -61,7 +69,7 @@ h2 {
 
 textarea {
     resize: none;
-    width: 600px;
+    width: 90%;
     height: 100px;
 }
 
@@ -70,8 +78,6 @@ textarea {
     overflow-x: scroll;
 }
 
-
-
-@media screen and (max-width: 1024px) {
-    
+.contact_required {
+    text-align: center;
 }

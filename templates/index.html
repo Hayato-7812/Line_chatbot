@@ -1,16 +1,17 @@
 </html><!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>HamaPfyトップページ</title>
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/responsive.css">
 </head>
 
 <body>
-    <!-- Header-->>
+    <!-- Header-->
     <section class="header">
         <header>
             <span> </span>
@@ -51,8 +52,9 @@
             <section id="two">
                 <div class="container">
                     <h2>みんなが選ぶおすすめの曲</h2>
-                    <!-- ここにデータベースを挿入したい!! -->
-                    <p># データベースを反映する</p>
+                    <p>
+                        <a href="/sharedmusic">おすすめ曲一覧</a>
+                    </p>
                 </div>
             </section>
 
@@ -60,7 +62,6 @@
             <section id="three">
                 <div class="container">
                     <h2>アカウント</h2>
-                    <!-- ここにアカウントURLや紹介画像を挿入したい -->
                     <h3>登録</h3>
                     <p>以下のボタンをクリック</p>
                     <a href="https://lin.ee/qvTQic8"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
@@ -99,41 +100,9 @@
     <!-- Footer -->
     <section class="Footer">
         <footer>
-            <h1>お問い合わせ</h1>
-            <form action="" method="post">
-                <ul>
-                    <li>
-                        <label for="rendou">お名前: </label>
-                        <input id="rendou" type="text" name="yourname" placeholder="例) 濱　俊也">
-                    </li>
-                    <li>
-                        <label for="rendou">LINE名: </label>
-                        <input id="rendou" type="text" name="LINEname" placeholder="例) Toshiya Hama">
-                    </li>
-                    <li>
-                        <label for="mail">メールアドレス: </label>
-                        <input id="mail" type="email" name="mail" placeholder="例) abcdefg@abcd.com">
-                    </li>
-                    <li>
-                        <label for="comment">お問い合わせ内容:</label>
-                        <li>
-                        <select name="お問い合わせ内容" id="お問い合わせ内容">
-                            <option value="db1">自分が登録した音楽について</option>
-                            <option value="db2">他人が登録した音楽について</option>
-                            <option value="db_del">音楽を削除してほしい</option>
-                            <option value="claim">機能について(改善・要望)</option>
-                            <option value="else">その他</option>
-                        </select>
-                        </li>
-                        <li>
-                            <textarea name="comment" id="comment" placeholder="ここにお問い合わせ内容を記述してください"></textarea>   
-                        </li>
-                        <li>
-                            <input type="submit" value="送信">
-                        </li>
-                    </li>
-                </ul>    
-            </form>
+            <p>
+                お問い合わせに関することは <a href="/contact_form">こちら</a>
+            </p>
         </footer>
     </section>
     </div>
