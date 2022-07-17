@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/responsive.css">
     <title>みんなのおすすめ曲</title>
 </head>
 <body>
@@ -11,16 +13,88 @@
     <section class="header">
         <header>
             <span> </span>
-            <h1 class="logo"><a href="#">みんなのおすすめ曲</a></h1>
+            <h1><a href="/top_page">HamaPfy</a></h1>
+            <h2 class="logo">みんなのおすすめ曲</h2>
         </header>
         <nav id="nav">
             <ul class="header_list">
                 <li><a href="#one" class="active">最も人気な曲</a></li>
                 <li><a href="#two">おすすめ一覧</a></li>
-                <li><a href="#three">アカウント</a></li>
             </ul>
         </nav>
     </section>
 
+    <!-- wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div class="main">
+            
+            <!-- One -->
+            <section id="one">
+                <div class="container">
+                    <header class="major">
+                        <h2>最も人気な曲</h2>
+                    </header>
+                    <!--ここに人気な曲を入れる-->
+                    {% for samp in contents %}
+                    <p>
+                        今、ユーザーの中で最も人気のある曲は、
+                        {{ samp.title[0] }}
+                        です！！
+                    </p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Two -->
+            <section id="two">
+                <div class="container">
+                    <header class="major">
+                        <h2>おすすめ一覧</h2>
+                    </header>
+                    <!---ここに曲のリストを入れる-->
+                    <div class="musiclist">
+                        <table class="musictable">
+                            <thread>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>追加日</th>
+                                    <th>追加した人</th>
+                                    <th>タイトル</th>
+                                    <th>URL</th>
+                                    <th>コメント</th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                                {% for samp in contents %}
+                                <tr>
+                                    <td>{{ samp.id }}</td>
+                                    <td>{{ samp.rec_date }}</td>
+                                    <td>{{ samp.rec_by }}</td>
+                                    <td>{{ samp.title }}</td>
+                                    <td>{{ samp.uri }}</td>
+                                    <td>{{ samp.comment }}</td>
+                                </tr>
+                                {% else %}
+                                <td>まだ何も登録されていません。</td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <section class="Footer">
+        <Footer>
+            <p>
+
+            </p>
+        </Footer>
+
+    </section>
 </body>
 </html>
