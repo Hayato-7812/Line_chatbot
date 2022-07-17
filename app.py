@@ -1,5 +1,5 @@
 import re
-from db_handler import Contact
+from db_handler import Contact, get_musicitems
 from flask import Flask, request, abort,render_template, redirect
 import os
 from db_handler import *
@@ -75,7 +75,10 @@ def contact_form():
 # おすすめの音楽一覧ページ
 @app.route("/sharedmusic")
 def sharemusic():
-    return render_template("musiclist.html")
+    # music_list = []
+    music_items = get_musicitems()
+    
+    return render_template("musiclist.html", contents=music_items)
 
 @app.route("/callback", methods=['POST'])
 def callback():
