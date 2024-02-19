@@ -11,7 +11,7 @@
 
   <p align="center">
     Music service like Spotify created by Toshiya Hama  and Hayato Shimizu(P)</br>
-    濱(Hama)と清水(P)が作ったSpotifyみたいな音楽サービス
+    濱(Hama)と清水(P)が作ったSpotifyみたいな名前の音楽サービス
  <!--   <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
