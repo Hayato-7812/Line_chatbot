@@ -1,5 +1,5 @@
 import re
-from db_handler import Contact
+from db_handler import Contact, get_musicitems
 from flask import Flask, request, abort,render_template, redirect
 import os
 from db_handler import *
@@ -35,10 +35,12 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 def toppage():
     return render_template("index.html")
 
+# お問い合わせ完了ページにアクセス
 @app.route("/contact_reqired")
 def requied():
     return render_template("contact_required.html")
 
+# お問い合わせページにアクセス
 @app.route("/contact_form", methods=["GET", "POST"])
 def contact_form():
     """
@@ -70,9 +72,13 @@ def contact_form():
     else:
         return render_template("contact.html")
 
+# おすすめの音楽一覧ページ
 @app.route("/sharedmusic")
 def sharemusic():
-    return render_template("musiclist.html")
+    # music_list = []
+    music_items = get_musicitems()
+    
+    return render_template("musiclist.html", contents=music_items)
 
 @app.route("/callback", methods=['POST'])
 def callback():
